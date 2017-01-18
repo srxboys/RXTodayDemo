@@ -107,13 +107,20 @@
     cell.titleLabel.text = [dict objectForKey:@"title"];
     cell.nameLabel.text = [dict objectForKey:@"name"];
     NSString * imgURL = [dict objectForKey:@"avaster"];
+    //图片我就简单的处理了
     NSData * imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:imgURL]];
     cell.avasteImgView.image = [UIImage imageWithData:imgData];
+    
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"indexPath.item=%zd", indexPath.item);
+    
+    [self.extensionContext openURL:[NSURL URLWithString:@"RXTodayWidget://action=GotoHomePage"] completionHandler:^(BOOL success) {
+        NSLog(@"open url result:%d",success);
+    }];
+    
 }
 
 @end

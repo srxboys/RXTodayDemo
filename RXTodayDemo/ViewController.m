@@ -86,7 +86,6 @@
 - (void)saveTheDataYouWantToShareWithDict:(NSDictionary *)dict {
     NSUserDefaults* userDefault = [[NSUserDefaults alloc] initWithSuiteName:@"group.ghs.RXToday"];
     [userDefault setObject:dict forKey:@"srxboys"];
-    [userDefault synchronize];
 }
 
 - (void)didReceiveMemoryWarning {
