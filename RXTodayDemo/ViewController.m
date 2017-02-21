@@ -76,6 +76,7 @@
 
 - (IBAction)shareButtonClick:(id)sender {
     [self saveTheDataYouWantToShareWithDict:_returnDict];
+//    [self saveDataToshareFileWidthDict:_returnDict];
 }
 
 - (IBAction)reloadButtonClick:(id)sender {
@@ -86,6 +87,22 @@
 - (void)saveTheDataYouWantToShareWithDict:(NSDictionary *)dict {
     NSUserDefaults* userDefault = [[NSUserDefaults alloc] initWithSuiteName:@"group.ghs.RXToday"];
     [userDefault setObject:dict forKey:@"srxboys"];
+}
+
+- (void)saveDataToshareFileWidthDict:(NSDictionary *)dict {
+    //获取分组的共享目录
+    NSURL *groupURL = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.ghs.RXToday"];
+    NSURL *fileURL = [groupURL URLByAppendingPathComponent:@"demo.txt"];
+    
+    NSData * data = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+    NSString * objcStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"file share dataStr=%@", objcStr);
+    //写入文件
+    [objcStr writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    
+//    //读取文件
+//    NSString *str = [NSString stringWithContentsOfURL:fileURL encoding:NSUTF8StringEncoding error:nil];
+//    NSLog(@"str = %@", str);
 }
 
 - (void)didReceiveMemoryWarning {

@@ -1,8 +1,8 @@
 //
 //  TodayViewController.h
-//  RXWidget
+//  RXWidgetNetwork
 //
-//  Created by srx on 2017/1/18.
+//  Created by srx on 2017/2/21.
 //  Copyright © 2017年 https://github.com/srxboys. All rights reserved.
 //
 
@@ -10,9 +10,9 @@
 
 @interface TodayViewController : UIViewController
 
-/*
-    用这个 只是 本设备里面的app 进行共享，
-    并不能 多个设备之间 用最后一个共享数据
+/**
+ *  采用系统原生请求
+ *
  */
 
 @end

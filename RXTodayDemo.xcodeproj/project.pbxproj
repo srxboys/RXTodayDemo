@@ -19,6 +19,12 @@
 		6C16B08D1E2F026A00012C87 /* RXWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6C16B07F1E2F026A00012C87 /* RXWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6C16B0981E2F0C2900012C87 /* RXRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C16B0971E2F0C2900012C87 /* RXRandom.m */; };
 		6C1AE1DE1E2F28DE00BC4083 /* RXTodayCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1AE1DD1E2F28DE00BC4083 /* RXTodayCollectionViewCell.m */; };
+		6C52E37A1E2F5E39004EDB65 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C16B0811E2F026A00012C87 /* NotificationCenter.framework */; };
+		6C52E37C1E2F5E40004EDB65 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C52E37B1E2F5E40004EDB65 /* Security.framework */; };
+		6CD092FE1E5C061D008C7897 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C16B0811E2F026A00012C87 /* NotificationCenter.framework */; };
+		6CD093021E5C061D008C7897 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD093011E5C061D008C7897 /* TodayViewController.m */; };
+		6CD093051E5C061D008C7897 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CD093031E5C061D008C7897 /* MainInterface.storyboard */; };
+		6CD093091E5C061D008C7897 /* RXWidgetNetwork.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6CD092FD1E5C061D008C7897 /* RXWidgetNetwork.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +34,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 6C16B07E1E2F026A00012C87;
 			remoteInfo = RXWidget;
+		};
+		6CD093071E5C061D008C7897 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6C16B0591E2F024E00012C87 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6CD092FC1E5C061D008C7897;
+			remoteInfo = RXWidgetNetwork;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -39,6 +52,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				6C16B08D1E2F026A00012C87 /* RXWidget.appex in Embed App Extensions */,
+				6CD093091E5C061D008C7897 /* RXWidgetNetwork.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -68,6 +82,12 @@
 		6C16B09D1E2F1F1400012C87 /* RXTodayDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = RXTodayDemo.entitlements; sourceTree = "<group>"; };
 		6C1AE1DC1E2F28DE00BC4083 /* RXTodayCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RXTodayCollectionViewCell.h; sourceTree = "<group>"; };
 		6C1AE1DD1E2F28DE00BC4083 /* RXTodayCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RXTodayCollectionViewCell.m; sourceTree = "<group>"; };
+		6C52E37B1E2F5E40004EDB65 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		6CD092FD1E5C061D008C7897 /* RXWidgetNetwork.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RXWidgetNetwork.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		6CD093001E5C061D008C7897 /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
+		6CD093011E5C061D008C7897 /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
+		6CD093041E5C061D008C7897 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		6CD093061E5C061D008C7897 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +95,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C52E37C1E2F5E40004EDB65 /* Security.framework in Frameworks */,
+				6C52E37A1E2F5E39004EDB65 /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +105,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C16B0821E2F026A00012C87 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6CD092FA1E5C061D008C7897 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6CD092FE1E5C061D008C7897 /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +125,7 @@
 				6C16B0941E2F0C2900012C87 /* RXExtenstion */,
 				6C16B0631E2F024E00012C87 /* RXTodayDemo */,
 				6C16B0831E2F026A00012C87 /* RXWidget */,
+				6CD092FF1E5C061D008C7897 /* RXWidgetNetwork */,
 				6C16B0801E2F026A00012C87 /* Frameworks */,
 				6C16B0621E2F024E00012C87 /* Products */,
 			);
@@ -105,6 +136,7 @@
 			children = (
 				6C16B0611E2F024E00012C87 /* RXTodayDemo.app */,
 				6C16B07F1E2F026A00012C87 /* RXWidget.appex */,
+				6CD092FD1E5C061D008C7897 /* RXWidgetNetwork.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -137,6 +169,7 @@
 		6C16B0801E2F026A00012C87 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6C52E37B1E2F5E40004EDB65 /* Security.framework */,
 				6C16B0811E2F026A00012C87 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
@@ -173,6 +206,17 @@
 			path = Random;
 			sourceTree = "<group>";
 		};
+		6CD092FF1E5C061D008C7897 /* RXWidgetNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				6CD093001E5C061D008C7897 /* TodayViewController.h */,
+				6CD093011E5C061D008C7897 /* TodayViewController.m */,
+				6CD093031E5C061D008C7897 /* MainInterface.storyboard */,
+				6CD093061E5C061D008C7897 /* Info.plist */,
+			);
+			path = RXWidgetNetwork;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -189,6 +233,7 @@
 			);
 			dependencies = (
 				6C16B08C1E2F026A00012C87 /* PBXTargetDependency */,
+				6CD093081E5C061D008C7897 /* PBXTargetDependency */,
 			);
 			name = RXTodayDemo;
 			productName = RXTodayDemo;
@@ -210,6 +255,23 @@
 			name = RXWidget;
 			productName = RXWidget;
 			productReference = 6C16B07F1E2F026A00012C87 /* RXWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		6CD092FC1E5C061D008C7897 /* RXWidgetNetwork */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6CD0930C1E5C061D008C7897 /* Build configuration list for PBXNativeTarget "RXWidgetNetwork" */;
+			buildPhases = (
+				6CD092F91E5C061D008C7897 /* Sources */,
+				6CD092FA1E5C061D008C7897 /* Frameworks */,
+				6CD092FB1E5C061D008C7897 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RXWidgetNetwork;
+			productName = RXWidgetNetwork;
+			productReference = 6CD092FD1E5C061D008C7897 /* RXWidgetNetwork.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -242,6 +304,10 @@
 							};
 						};
 					};
+					6CD092FC1E5C061D008C7897 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = MLKY76PU29;
+					};
 				};
 			};
 			buildConfigurationList = 6C16B05C1E2F024E00012C87 /* Build configuration list for PBXProject "RXTodayDemo" */;
@@ -259,6 +325,7 @@
 			targets = (
 				6C16B0601E2F024E00012C87 /* RXTodayDemo */,
 				6C16B07E1E2F026A00012C87 /* RXWidget */,
+				6CD092FC1E5C061D008C7897 /* RXWidgetNetwork */,
 			);
 		};
 /* End PBXProject section */
@@ -279,6 +346,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C16B0891E2F026A00012C87 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6CD092FB1E5C061D008C7897 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6CD093051E5C061D008C7897 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +380,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6CD092F91E5C061D008C7897 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6CD093021E5C061D008C7897 /* TodayViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -312,6 +395,11 @@
 			isa = PBXTargetDependency;
 			target = 6C16B07E1E2F026A00012C87 /* RXWidget */;
 			targetProxy = 6C16B08B1E2F026A00012C87 /* PBXContainerItemProxy */;
+		};
+		6CD093081E5C061D008C7897 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6CD092FC1E5C061D008C7897 /* RXWidgetNetwork */;
+			targetProxy = 6CD093071E5C061D008C7897 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -336,6 +424,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				6C16B0881E2F026A00012C87 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+		6CD093031E5C061D008C7897 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6CD093041E5C061D008C7897 /* Base */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
@@ -430,14 +526,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RXTodayDemo/RXTodayDemo.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yaojin Dou (HK9KZR5X5Z)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = RXTodayDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.ghs.app.RXTodayDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "05296a92-7aff-410b-ae65-b0fc060f3e0b";
 			};
 			name = Debug;
 		};
@@ -446,14 +542,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RXTodayDemo/RXTodayDemo.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yaojin Dou (HK9KZR5X5Z)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = RXTodayDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.ghs.app.RXTodayDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "05296a92-7aff-410b-ae65-b0fc060f3e0b";
 			};
 			name = Release;
 		};
@@ -461,14 +557,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = RXWidget/RXWidget.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yaojin Dou (HK9KZR5X5Z)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = RXWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.ghs.app.RXTodayDemo.today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "c64f122f-089a-4a21-9409-37020b9ebf43";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -477,14 +573,40 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = RXWidget/RXWidget.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yaojin Dou (HK9KZR5X5Z)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = RXWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.ghs.app.RXTodayDemo.today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "c64f122f-089a-4a21-9409-37020b9ebf43";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		6CD0930A1E5C061D008C7897 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yaojin Dou (HK9KZR5X5Z)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = RXWidgetNetwork/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.ghs.app.RXTodayDemo.RXWidgetNetwork;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		6CD0930B1E5C061D008C7897 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yaojin Dou (HK9KZR5X5Z)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = RXWidgetNetwork/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.ghs.app.RXTodayDemo.RXWidgetNetwork;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -518,6 +640,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		6CD0930C1E5C061D008C7897 /* Build configuration list for PBXNativeTarget "RXWidgetNetwork" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6CD0930A1E5C061D008C7897 /* Debug */,
+				6CD0930B1E5C061D008C7897 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

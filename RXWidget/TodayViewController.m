@@ -46,6 +46,8 @@
     _collectionView.frame = CGRectMake(20, 40, width, height);
     //高度
     self.preferredContentSize = CGSizeMake(ScreenWidth, 150);
+    
+//    [self getShareDataWithFile];
 }
 
 - (UIEdgeInsets)widgetMarginInsetsForProposedMarginInsets:(UIEdgeInsets)defaultMarginInsets{
@@ -72,6 +74,8 @@
     //如果有更新，使用NCUpdateresultnewdata
     
     
+//    [self getShareDataWithFile];
+    
     NSUserDefaults* userDefault = [[NSUserDefaults alloc] initWithSuiteName:@"group.ghs.RXToday"];
     NSDictionary* returnDict = [userDefault objectForKey:@"srxboys"];
     if ([returnDict isKindOfClass:[NSDictionary class]] && returnDict.count > 0) {
@@ -94,6 +98,42 @@
     }
     
 }
+
+- (id)getShareDataWithUserdefalt {
+    return nil;
+}
+
+- (id)getShareDataWithFile {
+    //获取分组的共享目录
+    NSURL *groupURL = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.ghs.RXToday"];
+    NSURL *fileURL = [groupURL URLByAppendingPathComponent:@"demo.txt"];
+    //读取文件
+    NSString *jsonString = [NSString stringWithContentsOfURL:fileURL encoding:NSUTF8StringEncoding error:nil];
+    
+    
+    if (jsonString == nil) {
+        return nil;
+    }
+    
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if(err)
+    {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    else {
+        NSLog(@"file = jsonString = %@", dic);
+    }
+    
+    
+    return jsonString;
+}
+
+
 
 #pragma mark - ~~~~~~~~~~~ UICollection ~~~~~~~~~~~~~~~
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
