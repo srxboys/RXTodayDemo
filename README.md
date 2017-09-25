@@ -7,9 +7,8 @@
 <br>
 
 
-### Wiki
-- [中文文档](https://github.com/srxboys/RXTodayDemo/wiki/中文文档)
-- [English Home](https://github.com/srxboys/RXTodayDemo/wiki/English-Home-page)
+### [Wiki](https://github.com/srxboys/RXTodayDemo/wiki/中文文档)
+
 
 ---
 
