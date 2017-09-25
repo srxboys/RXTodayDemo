@@ -24,10 +24,20 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>RXToday</string>
+			<string>支持短信、网页</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>RXTodayWidget</string>
+				<string>RXToday</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>支持Today</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>iOSWidgetApp</string>
 			</array>
 		</dict>
 	</array>

@@ -11,12 +11,13 @@
 - [中文文档](https://github.com/srxboys/RXTodayDemo/wiki/中文文档)
 - [English Home](https://github.com/srxboys/RXTodayDemo/wiki/English-Home-page)
 
--
+---
 
-### 请求成功后 数据缓存到`共享群组`里面,如果请求失败时，用`共享群组`数据。
+### 请求成功后 数据缓存到`共享群组（App Groups）`里面
+### 如果请求失败时，用`共享群组（App Groups）`数据。
 ![srxboys_Today](https://github.com/srxboys/RXTodayDemo/blob/master/srxboys/srxboys_today.gif)
 
--
+---
 
 如果你有想说的可以 [issues I](https://github.com/srxboys/RXExtenstion/issues/new) 。<br>
 如果你有更好的改进，please pull reqeust me <br>
