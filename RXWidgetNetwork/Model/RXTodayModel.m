@@ -5,6 +5,7 @@
 //  Created by srx on 16/7/15.
 //  Copyright © 2016年 https://github.com/srxboys. All rights reserved.
 //
+//target -> [RXTodayDemo, RXWidgetNetwork]
 
 #import "RXTodayModel.h"
 
@@ -65,14 +66,11 @@
 - (instancetype)initWithDict:(NSDictionary *)dict {
     if (self = [super init]) {
         //写这个，会自动到 initWithCoder 方法里去
-        self.goods_id = [dict objectForKeyNotNull:@"goods_id"];
-        self.sku = [dict objectForKeyNotNull:@"sku"];
+        self.title = [dict objectForKeyNotNull:@"title"];
+        self.type = [[dict objectForKeyNotNull:@"type"] integerValue];
+        self.link = [dict objectForKeyNotNull:@"link"];
         self.name = [dict objectForKeyNotNull:@"name"];
-        self.sub_title = [dict objectForKeyNotNull:@"sub_title"];
-        self.count_comment = [dict objectForKeyNotNull:@"count_comment"];
-        self.comment_detail = [dict objectForKeyNotNull:@"comment_detail"];
         self.price = [dict objectForKeyNotNull:@"price"];
-        self.market_price = [dict objectForKeyNotNull:@"market_price"];
         self.image = [dict objectForKeyNotNull:@"image"];
 
     }
@@ -86,13 +84,11 @@
 /// 从coder中读取数据，保存到相应的变量中，即反序列化数据
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     if(self = [super init]) {
-        self.goods_id = [aDecoder decodeObjectForKeyNotNull:@"goods_id"];
-        self.sku = [aDecoder decodeObjectForKeyNotNull:@"sku"];
+        self.title = [aDecoder decodeObjectForKeyNotNull:@"title"];
+        self.type = [[aDecoder decodeObjectForKeyNotNull:@"type"] integerValue];
         self.name = [aDecoder decodeObjectForKeyNotNull:@"name"];
-        self.sub_title = [aDecoder decodeObjectForKeyNotNull:@"sub_title"];
+        self.link = [aDecoder decodeObjectForKeyNotNull:@"link"];
         self.image = [aDecoder decodeObjectForKeyNotNull:@"image"];
-        self.count_comment = [aDecoder decodeObjectForKeyNotNull:@"count_comment"         ];
-        self.comment_detail = [aDecoder decodeObjectForKeyNotNull:@"comment_detail"];
         self.price = [aDecoder decodeObjectForKeyNotNull:@"price"];
     }
     return self;
@@ -100,13 +96,11 @@
 
 /// 读取实例变量，并把这些数据写到coder中去。序列化
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:_goods_id forKey:@"goods_id"];
+    [aCoder encodeObject:_title forKey:@"title"];
     [aCoder encodeObject:_name forKey:@"name"];
-    [aCoder encodeObject:_sku forKey:@"sku"];
-    [aCoder encodeObject:_sub_title forKey:@"sub_title"];
+    [aCoder encodeObject:@(_type) forKey:@"type"];
+    [aCoder encodeObject:_link forKey:@"link"];
     [aCoder encodeObject:_image forKey:@"image"];
-    [aCoder encodeObject:_count_comment forKey:@"count_comment"];
-    [aCoder encodeObject:_comment_detail forKey:@"comment_detail"];
     [aCoder encodeObject:_price forKey:@"price"   ];
 }
 @end

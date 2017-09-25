@@ -6,17 +6,15 @@
 <br> `图片来源: http://shields.io`
 <br>
 
--
-
-~~~~ coding ~~~~
-
--
 
 ### Wiki
 - [中文文档](https://github.com/srxboys/RXTodayDemo/wiki/中文文档)
 - [English Home](https://github.com/srxboys/RXTodayDemo/wiki/English-Home-page)
 
 -
+
+### 请求成功后 数据缓存到`共享群组`里面,如果请求失败时，用`共享群组`数据。
+![srxboys_Today](https://github.com/srxboys/RXTodayDemo/blob/master/srxboys/srxboys_today.gif)
 
 -
 

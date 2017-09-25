@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="GNF-ke-j1K">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="GNF-ke-j1K">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <deployment version="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Today View Controller-->
@@ -18,9 +22,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="94" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5YC-6I-A3b">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="543"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="94" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5YC-6I-A3b">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="533"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="RXTodayCell" rowHeight="94" id="AbY-yq-2C0" customClass="RXTodayCell">
                                         <rect key="frame" x="0.0" y="28" width="320" height="94"/>
@@ -42,7 +46,7 @@
                                                         <constraint firstAttribute="height" constant="21" id="uEc-ta-LvS"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.68987238220000002" green="0.17317810140000001" blue="0.069690255800000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="1" green="0.2117443058" blue="0.162269417" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="哈狗我爱护公刚发的搜狗his放假了对方光说不练公司了 " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wvs-Vu-X84">
@@ -51,7 +55,7 @@
                                                         <constraint firstAttribute="height" constant="38" id="Uuk-lk-Raj"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -66,7 +70,7 @@
                                                 <constraint firstItem="PHU-m7-kug" firstAttribute="leading" secondItem="2RS-qd-RBv" secondAttribute="leading" constant="10" id="lEU-bQ-abn"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="imgView" destination="PHU-m7-kug" id="KyR-yv-CmM"/>
                                             <outlet property="priceLabel" destination="bXp-fn-OSV" id="U5U-FR-CTA"/>
@@ -80,26 +84,26 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EBI-3T-qap">
-                                <rect key="frame" x="21" y="548" width="100" height="20"/>
+                                <rect key="frame" x="21" y="538" width="100" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="H9N-jr-yYk"/>
+                                    <constraint firstAttribute="height" constant="30" id="H9N-jr-yYk"/>
                                     <constraint firstAttribute="width" constant="100" id="k9S-4I-gSi"/>
                                 </constraints>
                                 <state key="normal" title="去看看">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="lookForAppButtonClick:" destination="GNF-ke-j1K" eventType="touchUpInside" id="IMY-PJ-lAW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BDI-bg-28N">
-                                <rect key="frame" x="126" y="548" width="100" height="20"/>
+                                <rect key="frame" x="126" y="538" width="100" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="Kd4-Lm-tXb"/>
-                                    <constraint firstAttribute="height" constant="20" id="gXi-th-xIi"/>
+                                    <constraint firstAttribute="height" constant="30" id="gXi-th-xIi"/>
                                 </constraints>
                                 <state key="normal" title="下一个">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="lookForNextButtonClick:" destination="GNF-ke-j1K" eventType="touchUpInside" id="WpC-O9-ZGq"/>
@@ -129,7 +133,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nWL-SG-cFr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="516" y="285"/>
+            <point key="canvasLocation" x="511" y="277"/>
         </scene>
     </scenes>
 </document>

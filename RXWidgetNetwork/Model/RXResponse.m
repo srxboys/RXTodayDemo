@@ -5,6 +5,7 @@
 //  Created by srx on 16/7/15.
 //  Copyright © 2016年 https://github.com/srxboys. All rights reserved.
 //
+//target -> [RXTodayDemo, RXWidgetNetwork]
 
 #import "RXResponse.h"
 
@@ -90,6 +91,29 @@
         return YES;
     }
 }
+@end
+
+#pragma mark - ~~~~~~~~~~~ 是否是 字典 ~~~~~~~~~~~~~~~
+@implementation NSObject (dictBOOL)
+
+- (BOOL)dictBOOL {
+    if([self isKindOfClass:[NSNull class]]) {
+        return NO;
+    }
+    else if([self isKindOfClass:[NSString class]]) {
+        return NO;
+    }
+    else if([self isKindOfClass:[NSArray class]]) {
+        return NO;
+    }
+    else if([self isKindOfClass:[NSNumber class]]) {
+        return NO;
+    }
+    else {
+        return YES;
+    }
+}
+
 @end
 
 

@@ -5,8 +5,9 @@
 //  Created by srx on 16/7/15.
 //  Copyright © 2016年 https://github.com/srxboys. All rights reserved.
 //
+//target -> [RXTodayDemo, RXWidgetNetwork]
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 #pragma mark ----------- [ 参数通用空处理 ] ---------
 @interface NSDictionary (TextNullReplace)
@@ -19,22 +20,17 @@
 
 #pragma mark ----------- [ RXToday ] ---------
 @interface RXTodayModel : NSObject<NSCoding>
-///商品id
-@property (nonatomic, copy) NSString *goods_id;
-///sku商品编号
-@property (nonatomic, copy) NSString *sku;
-///商品标题
+///title
+@property (nonatomic, copy) NSString *title;
+///type
+@property (nonatomic, assign) NSInteger type;
+/// id / wap /
+@property (nonatomic, copy) NSString *link;
+///name
 @property (nonatomic, copy) NSString *name;
-///副标题
-@property (nonatomic, copy) NSString *sub_title;
-///总评论数
-@property (nonatomic, copy) NSString *count_comment;
-///原价
-@property (nonatomic, copy) NSArray *comment_detail;
-///名称
+///价格
 @property (nonatomic, copy) NSString *price;
-///价格标签
-@property (nonatomic, copy) NSString *market_price;
+///名称
 @property (nonatomic, copy) NSString *image;
 
 

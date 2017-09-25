@@ -5,6 +5,7 @@
 //  Created by srx on 16/7/15.
 //  Copyright © 2016年 https://github.com/srxboys. All rights reserved.
 //
+//target -> [RXTodayDemo, RXWidgetNetwork]
 
 #import <Foundation/Foundation.h>
 
@@ -27,6 +28,11 @@
 ///返回【判断后的数组】-- 如果是字典以数组形式返回
 @interface NSObject (arrValue)
 - (NSArray *)arrValue;
+@end
+
+/// 是否是 字典
+@interface NSObject (dictBOOL)
+- (BOOL)dictBOOL;
 @end
 
 ///判断字符串是否 为 Url

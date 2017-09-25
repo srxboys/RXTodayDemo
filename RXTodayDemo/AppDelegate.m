@@ -52,9 +52,10 @@
             
         }
         else if([action isEqualToString:@"GotoOrderPage"]) {
-//            BasicHomeViewController *vc = (BasicHomeViewController*)self.window.rootViewController;
-//            [vc.tabbar selectAtIndex:2];
+
         }
+        
+        NSLog(@"iOSWidgetApp action=%@", action);
     }
     
     return  YES;

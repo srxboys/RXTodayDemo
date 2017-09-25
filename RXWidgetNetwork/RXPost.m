@@ -5,6 +5,7 @@
 //  Created by srx on 16/7/14.
 //  Copyright © 2016年 https://github.com/srxboys. All rights reserved.
 //
+//target -> [RXTodayDemo, RXWidgetNetwork]
 //系统 原生 请求
 #import "RXPost.h"
 
@@ -16,13 +17,14 @@
 //系统原生请求用到的
 #import "RXResponse.h"
 
-//  沙盒
-#define UserDefaults  [NSUserDefaults standardUserDefaults]
 // 接口
-#define Method        @"b2c.member2.hot_sales_amount"
+#define Method        @"b2c.advertising2.getad"
+
+
 //操作系统版本
 #define SYSTEMVERSION [UIDevice currentDevice].systemVersion
 
+#define Today_groupID     @"group.ghs.RXToday"
 #define Today_userdefault @"todayData"
 
 typedef void(^httpCompletion)(NSArray * array, BOOL isError);
@@ -39,22 +41,26 @@ typedef void(^httpCompletion)(NSArray * array, BOOL isError);
 @implementation RXPost
 
 #pragma mark - ~~~~~~~~~~~ 请求网络数据 ~~~~~~~~~~~~~~~
+
+- (NSUserDefaults *)usersDefault {
+    return [[NSUserDefaults alloc] initWithSuiteName:Today_groupID];
+}
+
 - (void)removeLocalPost {
-    [UserDefaults removeObjectForKey:Today_userdefault];
-    [UserDefaults synchronize];
+    NSUserDefaults * userDefault = [self usersDefault];
+    [userDefault removeObjectForKey:Today_userdefault];
+    [userDefault synchronize];
 }
 
 
 //系统原生请求
 - (void)postReqeustCompletion:(void (^)(NSArray *, BOOL))completion {
     
-    
-    
     NSURL * url = [NSURL URLWithString:@"http://app.ghs.net/index.php/api"];
     
-    NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
+    NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
     if(request == nil) {
-        NSLog(@"Post invalid request");
+        //NSLog(@"Post invalid request");
         completion (nil, YES);
         return;
     }
@@ -63,7 +69,7 @@ typedef void(^httpCompletion)(NSArray * array, BOOL isError);
     
     //头文件，不好配置啊
     //    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    //    [request setValue:@"text/html" forHTTPHeaderField:@"Content-Type"];
+//        [request setValue:@"text/html" forHTTPHeaderField:@"Content-Type"];
     //    [request setAllHTTPHeaderFields:headers];
     
     NSError * error = nil;
@@ -77,7 +83,7 @@ typedef void(^httpCompletion)(NSArray * array, BOOL isError);
     
     if(error) {
         completion (nil, YES);
-        NSLog(@"Post paramsDict error=%@", error.description);
+        //NSLog(@"Post paramsDict error=%@", error.description);
         return;
     }
     [request setHTTPBody:data];
@@ -85,44 +91,46 @@ typedef void(^httpCompletion)(NSArray * array, BOOL isError);
     //    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     //    NSURLSession * session = [NSURLSession sessionWithConfiguration:configuration];
     
+    __weak typeof(self)weakSelf = self;
+    
     NSURLSession * session = [NSURLSession sharedSession];
     
     _dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        NSLog(@"\n\nPost 请求结束\n------\n\n");
+        //NSLog(@"\n\nPost 请求结束\n------\n\n");
         if(error) {
             NSLog(@"Post dataTaskWithReques error =%@", error.description);\
             completion (nil, YES);
+            NSArray * array = [weakSelf getDataFromeLocalPost];
+            completion(array, ![array arrBOOL]);
             return ;
         }
-        else {
-            if([response isKindOfClass:[NSURLResponse class]]) {
-                NSLog(@"response=%@",(NSURLResponse *)response);
-            }
-        }
+    
         
         NSError * jsonError = nil;
         NSDictionary * jsonDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jsonError];
         if(jsonError) {
-            NSLog(@"Post jsonError error=%@", jsonError);
-            completion (nil, YES);
+            //NSLog(@"Post jsonError error=%@", jsonError);
+            NSArray * array = [weakSelf getDataFromeLocalPost];
+            completion(array, ![array arrBOOL]);
         }
         else {
-            NSLog(@"结果为=%@", jsonDict);
+            //NSLog(@"结果为=%@", jsonDict);
             RXResponse * responseObject = [RXResponse responseWithDict:jsonDict];
             if(!responseObject.status) {
-                NSLog(@"error=%@", responseObject.message);
-                completion(nil, YES);
+                //NSLog(@"error=%@", responseObject.message);
+                NSArray * array = [weakSelf getDataFromeLocalPost];
+                completion(array, ![array arrBOOL]);
                 return ;
             }
             
-            NSLog(@"请求下来的数据=%@", responseObject.returndata);
+            //NSLog(@"请求下来的数据=%@", responseObject.returndata);
             
             if([responseObject.returndata arrBOOL]) {
                 
                 //获取数据
-                NSArray * childrenArr = [responseObject.returndata[0] objectForKeyNotNull:@"week_sales"];
+                NSArray * childrenArr = [responseObject.returndata[0] objectForKeyNotNull:@"ad_list"];
                 //总分页
-                NSInteger totalePage = [[responseObject.returndata[0] objectForKeyNotNull:@"total_pages"] integerValue];
+//                NSInteger totalePage = [[responseObject.returndata[0] objectForKeyNotNull:@"total_count"] integerValue];
                 
                 if([childrenArr arrBOOL]) {
                     NSMutableArray * array = [[NSMutableArray alloc] init];
@@ -130,21 +138,23 @@ typedef void(^httpCompletion)(NSArray * array, BOOL isError);
                         RXTodayModel * coupModel = [RXTodayModel todayModelWithDictionary:dict];
                         [array addObject:coupModel];
                     }
-                    [self setArrayToUserDefault:array];
+                    NSDate * now = [NSDate date];
+                    NSDictionary * dict = @{@"date":[self getDateFormatter:now],@"data":array};
+                    [self setArrayToUserDefault:dict];
                     completion(array, NO);
                 }
                 else {
-                    completion(nil, YES);
+                    NSArray * array = [weakSelf getDataFromeLocalPost];
+                    completion(array, ![array arrBOOL]);
                 }
                 
             }
             else {
-                completion(nil, YES);
+                NSArray * array = [weakSelf getDataFromeLocalPost];
+                completion(array, ![array arrBOOL]);
             }
             
         }
-        
-        
     }];
 
     [_dataTask resume];
@@ -152,18 +162,20 @@ typedef void(^httpCompletion)(NSArray * array, BOOL isError);
 }
 
 
-- (void)setArrayToUserDefault:(NSArray *)tempArray {
+- (void)setArrayToUserDefault:(NSDictionary *)tempDict {
     @autoreleasepool {
-        if (tempArray == nil)
+        if (tempDict == nil)
         {
             [self removeLocalPost];
             return;
         }
         
         //NSKeyedArchiver     把对象写到二进制流中去。
-        NSData *newData = [NSKeyedArchiver archivedDataWithRootObject:tempArray];
-        [UserDefaults setObject:newData forKey:Today_userdefault];
-        [UserDefaults synchronize];
+        NSData *newData = [NSKeyedArchiver archivedDataWithRootObject:tempDict];
+        
+        NSUserDefaults* userDefault = [self usersDefault];
+        [userDefault setObject:newData forKey:Today_userdefault];
+        [userDefault synchronize];
     }
 }
 
@@ -171,34 +183,49 @@ typedef void(^httpCompletion)(NSArray * array, BOOL isError);
 #pragma mark - ~~~~~~~~~~~ 获取本地数据 ~~~~~~~~~~~~~~~
 - (NSArray *)getDataFromeLocalPost {
     
-    NSData *oldData = [[NSUserDefaults standardUserDefaults] objectForKey:Today_userdefault] ;
-    NSMutableArray * array = nil;
+    NSData *oldData = [[self usersDefault] objectForKey:Today_userdefault] ;
+    NSArray * array = nil;
+    NSDictionary * dict = nil;
     if (oldData!=nil)
     {
-        array = [NSKeyedUnarchiver unarchiveObjectWithData:oldData];
+        dict = [NSKeyedUnarchiver unarchiveObjectWithData:oldData];
 #if DEBUG
         
-        NSLog(@"Post Have error data num = %lu",(unsigned long)[array count]);
+        //NSLog(@"Post Have error data num = %lu",(unsigned long)[array count]);
 #endif
     }
+    
+    if(![dict dictBOOL]) return nil;
+    NSDate * oldDate = [self getStringFormatter:[dict objectForKeyNotNull:@"date"]];
+    NSTimeInterval interval = [oldDate timeIntervalSince1970];
+    NSLog(@"getLocalData interval=%zd", interval);
+    array = [dict objectForKey:@"data"];
+    
     NSMutableArray *errorLogArray = [[NSMutableArray alloc] init];
     if ([array count]>0)
     {
         //确保字典 key 一定是存在，否则崩溃
         for(RXTodayModel * todayModel in array)
         {
-            NSMutableDictionary * paramsDict = [[NSMutableDictionary alloc] init];
-            [paramsDict setObject:todayModel.goods_id     forKey:@"goods_id"];
-            [paramsDict setObject:[self valueWithNIL:todayModel.name] forKey:@"name"];
-            [paramsDict setObject:todayModel.sku forKey:@"sku"      ];
-            [paramsDict setObject:todayModel.sub_title forKey:@"sub_title" ];
-            [paramsDict setObject:todayModel.image forKey:@"image"        ];
-            [paramsDict setObject:todayModel.count_comment forKey:@"count_comment"         ];
-            [paramsDict setObject:todayModel.comment_detail forKey:@"comment_detail"];
-            [paramsDict setObject:todayModel.price forKey:@"price"   ];
+            [errorLogArray addObject:todayModel];
         }
     }
     return errorLogArray;
+}
+
+- (NSString *)getDateFormatter:(NSDate *)date {
+    // 将当前时间以字符串形式输出
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *strDate = [dateFormatter stringFromDate:[NSDate date]];
+    return strDate;
+}
+
+- (NSDate *)getStringFormatter:(NSString *)dateString {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *date = [dateFormatter dateFromString:dateString];
+    return date;
 }
 
 - (NSString *)valueWithNIL:(NSString *)string {
@@ -208,43 +235,8 @@ typedef void(^httpCompletion)(NSArray * array, BOOL isError);
     return string;
 }
 
-- (NSDictionary *)network {
-    
-    
-    //分页 0-7 //确保每次 定格到当前位置刷新得到新数据
-    NSInteger page = arc4random() % 8;
- 
-    //http://app.ghs.net/index.php/api?
-    
-    NSDictionary * paramsDict = @{@"method"   : Method,
-                                  @"page_num" : @(1)};
-    
-    NSMutableDictionary* newParams = [NSMutableDictionary  dictionaryWithDictionary:paramsDict];
-    
-    [newParams setObject:@"56874" forKey:@"member_id"];
-    
-    //APP 机型 iOS
-    [newParams setObject:@"827384" forKey:@"device_type"];
-    
-    // APP版本号
-    [newParams setObject:@"2.5.0" forKey:@"version"];
-    
-    //用系统请求方法
-    NSLog(@"请求参数=%@", newParams);
-    return newParams;
-    
-}
-
 - (NSData *)paramsDataUTF8{
-    
-    NSDictionary * dictParams = [self network];
-    NSMutableString * string = [[NSMutableString alloc] init];
-    for (NSString * key in dictParams.allKeys) {
-        [string appendString:[NSString stringWithFormat:@"%@=%@&", key, dictParams[key]]];
-    }
-    
-    [string setString:[string substringToIndex:string.length - 1]];
-    NSLog(@"参数=%@", string);
+    NSString * string = @"member_id=0&sign=FC06B36057E41D6411318953F2E5D3A1&pagelist=10&uuid=0c439e09e472f939d8e3a96708aeccff7769a7cc&version=3.0.0&software=11.0&device_type=827384&city_num=110000&pagenext=0&umeng_channel=真机测试&hardware=Simulator&method=b2c.advertising2.getad";
     return [string dataUsingEncoding:NSUTF8StringEncoding];
 }
 
@@ -258,7 +250,7 @@ typedef void(^httpCompletion)(NSArray * array, BOOL isError);
  [RXAFNS postReqeustWithParams:paramsDict successBlock:^(Response *responseObject) {
  
  if(!responseObject.status) {
- NSLog(@"error=%@", responseObject.message);
+ //NSLog(@"error=%@", responseObject.message);
  completion(nil, YES);
  return ;
  }
@@ -289,7 +281,7 @@ typedef void(^httpCompletion)(NSArray * array, BOOL isError);
  }
  
  } failureBlock:^(NSError *error) {
- NSLog(@"error=%@", error.description);
+ //NSLog(@"error=%@", error.description);
  completion(nil, YES);
  } showHUD:NO loadingInView:nil];
  
