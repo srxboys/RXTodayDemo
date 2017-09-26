@@ -177,7 +177,7 @@
     [_post postReqeustCompletion:^(NSArray *array, BOOL isError) {
         if(!isError) {
             self.sourceArr = array;
-                        self.preferredContentSize = CGSizeMake(0, 700);
+            self.preferredContentSize = CGSizeMake(0, 400);
             if (completionHandler) {
                 completionHandler(self.sourceArr.count > 0 ? NCUpdateResultNewData : NCUpdateResultNoData);
             }
@@ -190,10 +190,10 @@
         }
         
         if(_sourceArr.count <= 0) {
-            self.preferredContentSize = CGSizeMake(0, 300);
+            self.preferredContentSize = CGSizeMake(0, 110);
         }
         else {
-            self.preferredContentSize = CGSizeMake(0, 700);
+            self.preferredContentSize = CGSizeMake(0, 400);
         }
         
     }];
@@ -255,7 +255,7 @@
     }
     NSIndexPath * indexPath = [NSIndexPath indexPathForRow:_showRow inSection:0];
     //    [_tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
-    [_tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    [_tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:_showRow != 0];
 }
 
 
