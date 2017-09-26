@@ -15,8 +15,6 @@
 
 @interface TodayViewController () <NCWidgetProviding, UITableViewDelegate, UITableViewDataSource>
 {
-    CGFloat _tableHeight;
-    CGFloat _buttonHeight;
     RXPost * _post;
     
     NSInteger _showRow;
@@ -51,17 +49,13 @@
     _showRow = 0;
     _icrease = 4;
     
-    _tableHeight  = 200;
-    _buttonHeight = 40;
-    
 #ifdef __IPHONE_10_0 //因为是iOS10才有的，还请记得适配
                      //如果需要折叠
     self.extensionContext.widgetLargestAvailableDisplayMode = NCWidgetDisplayModeExpanded;
 #endif
-    //高度
-    self.preferredContentSize = CGSizeMake(0, 110);
     
     _tableView.tableFooterView = [[UIView alloc] init];
+    _tableView.bounces = NO;
     
     self.sourceArr = [_post getDataFromeLocalPost];
     if(self.sourceArr.count > 0) {
@@ -177,7 +171,6 @@
     [_post postReqeustCompletion:^(NSArray *array, BOOL isError) {
         if(!isError) {
             self.sourceArr = array;
-            self.preferredContentSize = CGSizeMake(0, 400);
             if (completionHandler) {
                 completionHandler(self.sourceArr.count > 0 ? NCUpdateResultNewData : NCUpdateResultNoData);
             }
@@ -187,13 +180,6 @@
             if (completionHandler) {
                 completionHandler(NCUpdateResultNoData);
             }
-        }
-        
-        if(_sourceArr.count <= 0) {
-            self.preferredContentSize = CGSizeMake(0, 110);
-        }
-        else {
-            self.preferredContentSize = CGSizeMake(0, 400);
         }
         
     }];
